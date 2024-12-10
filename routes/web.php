@@ -19,7 +19,7 @@ Route::get('/', function () {
 Route::get('/contact', function () {
     return 'Malek Bouzaien';
 });
-
+Route::group(['middleware' => ['auth']], function () {
 Route::get('/etudiant', [EtudiantController::class,"index"])->name('etudiant');
 Route::get('/create', [EtudiantController::class,"create"])->name('etudiant.create');
 Route::post('/create', [EtudiantController::class,"store"])->name('etudiant.ajouter');
@@ -30,4 +30,5 @@ Route::get('/etudiant/{etudiant}', [EtudiantController::class,"edit"])->name('et
 
 Route::get('/show/{etudiant}', [EtudiantController::class,"show"])->name('etudiant.show');
 Route::delete('/delete/{etudiant}', [EtudiantController::class,"delete"])->name('etudiant.delete');
+});
 //Route::resource('/etudiant', 'App\Http\Controllers\EtudiantController');
